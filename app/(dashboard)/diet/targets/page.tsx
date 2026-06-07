@@ -89,9 +89,9 @@ export default function TargetsPage() {
       <SectionTabs tabs={DIET_TABS} className="mb-6" />
 
       {/* Calculator */}
-      <div className="card-premium p-5 mb-5">
-        <h2 className="text-sm font-semibold text-foreground mb-4">Your stats</h2>
-        <div className="grid grid-cols-2 gap-3 mb-3">
+      <div className="card-premium p-5 mb-6">
+        <h2 className="text-sm font-semibold text-foreground mb-5">Your stats</h2>
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="space-y-1.5">
             <Label>Age</Label>
             <Input
@@ -134,7 +134,7 @@ export default function TargetsPage() {
             />
           </div>
         </div>
-        <div className="space-y-1.5 mb-4">
+        <div className="space-y-1.5 mb-5">
           <Label>Activity level</Label>
           <Select
             value={activity}
@@ -195,7 +195,7 @@ export default function TargetsPage() {
               <h2 className="text-sm font-semibold text-foreground mb-3">
                 Choose your target
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {targets.map((target) => (
                   <button
                     key={target.key}

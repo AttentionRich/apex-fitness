@@ -159,7 +159,7 @@ export default function DietLogPage() {
       <SectionTabs tabs={DIET_TABS} className="mb-6" />
 
       {/* Calorie summary */}
-      <div className="card-premium p-5 mb-5">
+      <div className="card-premium p-5 mb-6">
         <div className="flex items-center gap-6">
           <CalorieRing consumed={totalConsumed} target={target} size={100} strokeWidth={7} />
           <div className="flex-1 grid grid-cols-3 gap-2">
@@ -213,7 +213,7 @@ export default function DietLogPage() {
 
       {/* Suggestions row */}
       {suggestions.length > 0 && (
-        <div className="mb-5">
+        <div className="mb-6">
           <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2.5">
             Suggestions for you
           </h2>
@@ -222,7 +222,7 @@ export default function DietLogPage() {
               <button
                 key={meal.id}
                 onClick={() => handleQuickAdd(meal, 'snack')}
-                className="shrink-0 flex flex-col gap-1 p-3 rounded-xl border border-border bg-card hover:border-primary/40 hover:bg-primary/5 transition-all text-left w-36"
+                className="shrink-0 flex flex-col gap-1.5 p-3.5 rounded-xl border border-border bg-card hover:border-primary/40 hover:bg-primary/5 transition-all text-left w-40"
               >
                 <div className="text-xs font-semibold text-foreground leading-snug line-clamp-2">
                   {meal.name}
@@ -240,7 +240,7 @@ export default function DietLogPage() {
       )}
 
       {/* Meal groups */}
-      <div className="space-y-4">
+      <div className="space-y-3.5">
         {MEAL_TYPES.map(({ type, label, icon: Icon }) => {
           const mealEntries = entries.filter((e) => e.mealType === type)
           const mealTotal = mealEntries.reduce((sum, e) => sum + e.calories, 0)
@@ -248,7 +248,7 @@ export default function DietLogPage() {
           return (
             <div key={type} className="card-premium overflow-hidden">
               {/* Meal type header */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-border/60">
+              <div className="flex items-center gap-3 px-4 py-3.5 border-b border-border/60">
                 <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center">
                   <Icon className="w-3.5 h-3.5 text-muted-foreground" />
                 </div>
@@ -264,7 +264,7 @@ export default function DietLogPage() {
 
               {/* Entries */}
               {mealEntries.length === 0 ? (
-                <div className="px-4 py-2.5 text-xs text-muted-foreground/60 italic">
+                <div className="px-4 py-3.5 text-xs text-muted-foreground/60 italic">
                   Nothing logged yet
                 </div>
               ) : (
@@ -276,7 +276,7 @@ export default function DietLogPage() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="flex items-center gap-3 px-4 py-2.5"
+                        className="flex items-center gap-3 px-4 py-3"
                       >
                         <div className="flex-1 min-w-0">
                           <div className="text-sm font-medium text-foreground truncate">
@@ -294,7 +294,7 @@ export default function DietLogPage() {
                         </div>
                         <button
                           onClick={() => deleteMealEntry(entry.id)}
-                          className="w-6 h-6 flex items-center justify-center rounded-md text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                          className="w-7 h-7 flex items-center justify-center rounded-md text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-colors shrink-0"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -305,10 +305,10 @@ export default function DietLogPage() {
               )}
 
               {/* Add button */}
-              <div className="px-3 py-2 border-t border-border/40">
+              <div className="px-3 py-2.5 border-t border-border/40">
                 <button
                   onClick={() => openAddSheet(type)}
-                  className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors w-full"
+                  className="flex items-center gap-1.5 px-2 py-2 rounded-lg text-xs font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors w-full"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   Add to {label.toLowerCase()}
@@ -321,17 +321,17 @@ export default function DietLogPage() {
 
       {/* Add meal sheet */}
       <Sheet open={showAddSheet} onOpenChange={setShowAddSheet}>
-        <SheetContent side="bottom" className="rounded-t-2xl max-h-[85vh] overflow-y-auto">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl max-h-[85vh] overflow-y-auto px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>Add to {MEAL_TYPES.find((m) => m.type === addMealType)?.label}</SheetTitle>
           </SheetHeader>
 
           {/* Mode tabs */}
-          <div className="flex gap-1 p-1 bg-muted rounded-xl mt-4 mb-5">
+          <div className="flex gap-1 p-1.5 bg-muted rounded-xl mt-2 mb-5">
             <button
               onClick={() => setAddMode('saved')}
               className={cn(
-                'flex-1 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                'flex-1 py-2 rounded-lg text-sm font-medium transition-colors',
                 addMode === 'saved' ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground'
               )}
             >
@@ -340,7 +340,7 @@ export default function DietLogPage() {
             <button
               onClick={() => setAddMode('custom')}
               className={cn(
-                'flex-1 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                'flex-1 py-2 rounded-lg text-sm font-medium transition-colors',
                 addMode === 'custom' ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground'
               )}
             >
@@ -385,7 +385,7 @@ export default function DietLogPage() {
                           setSelectedSavedId(meal.id)
                         }}
                         className={cn(
-                          'w-full flex items-center justify-between px-3 py-2.5 rounded-lg border text-left transition-all',
+                          'w-full flex items-center justify-between px-3.5 py-3 rounded-lg border text-left transition-all',
                           selectedSavedId === meal.id
                             ? 'border-primary bg-primary/5'
                             : 'border-border hover:border-primary/30'

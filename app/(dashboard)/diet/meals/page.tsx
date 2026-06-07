@@ -160,11 +160,11 @@ export default function MealsLibraryPage() {
           action={{ label: 'Add your first meal', onClick: () => setShowAdd(true) }}
         />
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {filtered.map((meal) => (
             <div
               key={meal.id}
-              className="card-premium p-4 flex items-start gap-3"
+              className="card-premium p-5 flex items-start gap-3"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -211,17 +211,17 @@ export default function MealsLibraryPage() {
                   Used {meal.useCount} {meal.useCount === 1 ? 'time' : 'times'}
                 </div>
               </div>
-              <div className="flex flex-col gap-1.5 shrink-0">
+              <div className="flex flex-col gap-2 shrink-0">
                 <Button
                   size="sm"
                   variant="outline"
-                  className="h-7 text-xs px-2.5"
+                  className="h-8 text-xs px-3"
                   onClick={() => handleUseNow(meal)}
                 >
                   + Log today
                 </Button>
                 <button
-                  className="text-xs text-muted-foreground/50 hover:text-destructive transition-colors text-right"
+                  className="text-xs text-muted-foreground/50 hover:text-destructive transition-colors text-right py-0.5"
                   onClick={() => deleteSavedMeal(meal.id)}
                 >
                   Remove
@@ -234,11 +234,11 @@ export default function MealsLibraryPage() {
 
       {/* Add meal sheet */}
       <Sheet open={showAdd} onOpenChange={setShowAdd}>
-        <SheetContent side="bottom" className="rounded-t-2xl max-h-[85vh] overflow-y-auto">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl max-h-[85vh] overflow-y-auto px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>Add meal to library</SheetTitle>
           </SheetHeader>
-          <div className="py-4 space-y-3">
+          <div className="py-4 space-y-4">
             <div className="space-y-1.5">
               <Label>Meal name</Label>
               <Input

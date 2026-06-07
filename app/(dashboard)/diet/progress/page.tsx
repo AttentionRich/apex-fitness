@@ -85,7 +85,7 @@ export default function DietProgressPage() {
       ) : (
         <div className="space-y-5">
           {/* Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
             <StatCard
               label="Avg daily intake"
               value={formatCalories(avgCalories)}
@@ -204,7 +204,7 @@ export default function DietProgressPage() {
 
           {/* Insight callout */}
           {daysWithData.length >= 3 && (
-            <div className="card-premium p-4 bg-primary/5 border-primary/20">
+            <div className="card-premium p-5 bg-primary/5 border-primary/20">
               <div className="text-sm font-semibold text-foreground mb-1">
                 {isUnder ? 'On track' : 'Slightly over target'}
               </div>

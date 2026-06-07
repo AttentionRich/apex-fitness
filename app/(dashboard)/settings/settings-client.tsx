@@ -90,7 +90,7 @@ export function SettingsClient({ user }: { user: SettingsUser }) {
     <div className="px-4 lg:px-8 py-6 max-w-2xl mx-auto">
       <PageHeader title="Settings" subtitle="Manage your account and data." />
 
-      <div className="space-y-6">
+      <div className="space-y-5">
         {/* Theme */}
         <div className="card-premium p-5">
           <div className="flex items-center gap-2 mb-4">
@@ -111,7 +111,7 @@ export function SettingsClient({ user }: { user: SettingsUser }) {
               <h2 className="text-sm font-semibold text-foreground">Account</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {/* Email (read-only) */}
               {user.email && (
                 <div className="space-y-1.5">
@@ -212,9 +212,9 @@ export function SettingsClient({ user }: { user: SettingsUser }) {
               {user ? 'Local cache' : 'Local data'}
             </h2>
           </div>
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             {dataStats.map(({ label, value }) => (
-              <div key={label} className="p-3 rounded-xl bg-muted">
+              <div key={label} className="p-4 rounded-xl bg-muted">
                 <div className="text-lg font-semibold stat-number text-foreground">
                   {value}
                 </div>

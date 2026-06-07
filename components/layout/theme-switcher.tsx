@@ -11,6 +11,7 @@ type ThemeOption = {
   description: string
   swatch: string
   preview: string
+  isDefault?: boolean
 }
 
 const THEMES: ThemeOption[] = [
@@ -27,6 +28,7 @@ const THEMES: ThemeOption[] = [
     description: 'Premium dark',
     swatch: '#1e1e2a',
     preview: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0d1b34 100%)',
+    isDefault: true,
   },
   {
     id: 'pink',
@@ -34,6 +36,13 @@ const THEMES: ThemeOption[] = [
     description: 'Wellness glow',
     swatch: '#f4a7b9',
     preview: 'linear-gradient(135deg, #fff0f5 0%, #fce7f3 50%, #fbcfe8 100%)',
+  },
+  {
+    id: 'maria',
+    label: 'Maria 🌻',
+    description: 'Sunflower warmth',
+    swatch: '#c8881a',
+    preview: 'linear-gradient(135deg, #fffcf0 0%, #fff8d4 50%, #fef0a0 100%)',
   },
 ]
 
@@ -70,8 +79,8 @@ export function ThemeSwitcherFull() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <div className="grid grid-cols-3 gap-3">
-      {THEMES.map(({ id, label, description, preview }) => {
+    <div className="grid grid-cols-2 gap-3">
+      {THEMES.map(({ id, label, description, preview, isDefault }) => {
         const isActive = theme === id
         return (
           <button
@@ -97,8 +106,13 @@ export function ThemeSwitcherFull() {
                 <p className="text-xs font-semibold text-foreground leading-tight">
                   {label}
                 </p>
-                <p className="text-[10px] text-muted-foreground leading-tight mt-0.5">
+                <p className="text-[10px] text-muted-foreground leading-tight mt-0.5 flex items-center gap-1 flex-wrap">
                   {description}
+                  {isDefault && (
+                    <span className="inline-block bg-primary/15 text-primary px-1.5 py-px rounded-full text-[9px] font-semibold leading-tight tracking-wide">
+                      Default
+                    </span>
+                  )}
                 </p>
               </div>
               {isActive && (

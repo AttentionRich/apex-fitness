@@ -33,9 +33,9 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-1.5">
+    <div className="w-full max-w-sm px-1">
+      <div className="mb-9">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
           Reset password
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -43,8 +43,8 @@ export default function ForgotPasswordPage() {
         </p>
       </div>
 
-      <form action={formAction} className="space-y-4">
-        <div className="space-y-1.5">
+      <form action={formAction} className="space-y-5">
+        <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"

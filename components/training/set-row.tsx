@@ -52,7 +52,7 @@ export function SetRow({
   return (
     <motion.div
       className={cn(
-        'flex items-center gap-2 px-1 py-1 rounded-lg transition-colors duration-150',
+        'flex items-center gap-2 px-1 py-1.5 rounded-lg transition-colors duration-150',
         set.completed && 'bg-emerald-50/60 dark:bg-emerald-950/20'
       )}
       animate={set.completed ? { scale: [1, 0.99, 1] } : {}}
@@ -89,7 +89,7 @@ export function SetRow({
             }
           }}
           className={cn(
-            'w-full h-9 px-2.5 rounded-lg text-sm font-medium text-center tabular',
+            'w-full h-10 px-2.5 rounded-lg text-sm font-medium text-center tabular',
             'border bg-background text-foreground',
             'focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary',
             'transition-all duration-100',
@@ -118,7 +118,7 @@ export function SetRow({
             }
           }}
           className={cn(
-            'w-full h-9 px-2.5 rounded-lg text-sm font-medium text-center tabular',
+            'w-full h-10 px-2.5 rounded-lg text-sm font-medium text-center tabular',
             'border bg-background text-foreground',
             'focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary',
             'transition-all duration-100',
@@ -134,11 +134,11 @@ export function SetRow({
       </div>
 
       {/* Complete toggle */}
-      <div className="w-7 flex justify-center">
+      <div className="w-8 flex justify-center">
         <button
           onClick={onToggle}
           className={cn(
-            'w-7 h-7 rounded-full flex items-center justify-center transition-all duration-150',
+            'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150',
             set.completed
               ? 'bg-emerald-500 text-white shadow-sm hover:bg-emerald-600'
               : 'border-2 border-muted-foreground/30 hover:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/20'

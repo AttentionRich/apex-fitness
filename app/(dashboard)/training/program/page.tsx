@@ -172,7 +172,7 @@ export default function ProgramPage() {
       ) : (
         <div className="space-y-4">
           {/* Program header */}
-          <div className="card-premium p-4">
+          <div className="card-premium p-5">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-foreground">{program.name}</h2>
@@ -196,7 +196,7 @@ export default function ProgramPage() {
           {/* Workout days */}
           {days.map((day) => (
             <div key={day.id} className="card-premium overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+              <div className="flex items-center gap-3 px-4 py-3.5 border-b border-border">
                 <div className="w-10 text-center">
                   <span className="text-[11px] font-semibold text-primary uppercase tracking-wide">
                     {getDayName(day.dayIndex)}
@@ -231,7 +231,7 @@ export default function ProgramPage() {
               {/* Exercises */}
               <div className="divide-y divide-border/50">
                 {day.exercises.length === 0 && (
-                  <div className="py-3 px-4 text-xs text-muted-foreground italic">
+                  <div className="py-4 px-4 text-xs text-muted-foreground italic">
                     No exercises added yet
                   </div>
                 )}
@@ -239,7 +239,7 @@ export default function ProgramPage() {
                   const ex = exerciseLibrary.find((e) => e.id === pe.exerciseId)
                   if (!ex) return null
                   return (
-                    <div key={pe.id} className="flex items-center gap-3 px-4 py-2.5">
+                    <div key={pe.id} className="flex items-center gap-3 px-4 py-3">
                       <GripVertical className="w-3.5 h-3.5 text-muted-foreground/40 shrink-0" />
                       <div className="flex-1 min-w-0">
                         <span className="text-sm font-medium text-foreground">{ex.name}</span>
@@ -260,7 +260,7 @@ export default function ProgramPage() {
                 })}
               </div>
 
-              <div className="px-4 py-2.5 border-t border-border/50">
+              <div className="px-4 py-3 border-t border-border/50">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -287,11 +287,11 @@ export default function ProgramPage() {
 
       {/* New program sheet */}
       <Sheet open={showNewProgram} onOpenChange={setShowNewProgram}>
-        <SheetContent side="bottom" className="rounded-t-2xl">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>New training program</SheetTitle>
           </SheetHeader>
-          <div className="py-4 space-y-4">
+          <div className="py-4 px-1 space-y-4">
             <div className="space-y-1.5">
               <Label>Program name</Label>
               <Input
@@ -311,11 +311,11 @@ export default function ProgramPage() {
 
       {/* Add day sheet */}
       <Sheet open={showAddDay} onOpenChange={setShowAddDay}>
-        <SheetContent side="bottom" className="rounded-t-2xl">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>Add workout day</SheetTitle>
           </SheetHeader>
-          <div className="py-4 space-y-4">
+          <div className="py-4 px-1 space-y-4">
             <div className="space-y-1.5">
               <Label>Day name</Label>
               <Input
@@ -352,11 +352,11 @@ export default function ProgramPage() {
         open={showAddExercise !== null}
         onOpenChange={(open) => !open && setShowAddExercise(null)}
       >
-        <SheetContent side="bottom" className="rounded-t-2xl">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>Add exercise</SheetTitle>
           </SheetHeader>
-          <div className="py-4 space-y-4">
+          <div className="py-4 px-1 space-y-4">
             <div className="space-y-1.5">
               <Label>Exercise</Label>
               <Select value={selectedExerciseId} onValueChange={(v) => setSelectedExerciseId(v ?? '')}>

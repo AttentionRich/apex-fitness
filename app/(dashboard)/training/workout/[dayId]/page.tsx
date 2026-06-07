@@ -173,8 +173,8 @@ export default function WorkoutPage({ params }: Props) {
   return (
     <div className="max-w-3xl mx-auto">
       {/* Sticky header */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border px-4 lg:px-8 py-3">
-        <div className="flex items-center gap-3 mb-2">
+      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border px-4 lg:px-8 py-4">
+        <div className="flex items-center gap-3 mb-2.5">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -197,7 +197,7 @@ export default function WorkoutPage({ params }: Props) {
       </div>
 
       {/* Exercise list */}
-      <div className="px-4 lg:px-8 py-5 space-y-4">
+      <div className="px-4 lg:px-8 py-6 space-y-4">
         {log.exerciseLogs.map((exerciseLog, idx) => {
           const plannedEx = workoutDay.exercises.find(
             (pe) => pe.id === exerciseLog.plannedExerciseId
@@ -295,12 +295,12 @@ function WorkoutSummary({
           <h2 className="text-sm font-semibold text-foreground mb-3">
             Next session suggestions
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {suggestions.map((s) => (
               <div
                 key={s.exerciseId}
                 className={cn(
-                  'flex items-start justify-between gap-4 p-3.5 rounded-xl border',
+                  'flex items-start justify-between gap-4 p-4 rounded-xl border',
                   s.status === 'increase'
                     ? 'border-emerald-200 bg-emerald-50/50 dark:border-emerald-900/40 dark:bg-emerald-950/20'
                     : s.status === 'reduce'

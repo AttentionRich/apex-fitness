@@ -115,7 +115,7 @@ export default function InsightsPage() {
 
       <div className="space-y-5">
         {/* Key numbers */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
           <StatCard
             label="Workouts logged"
             value={totalCompleted}
@@ -159,20 +159,20 @@ export default function InsightsPage() {
                 ? `You eat ${formatCalories(avgRestCal - avgTrainingCal)} more on rest days.`
                 : 'Your intake is consistent across training and rest days.'}
             </p>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 rounded-xl bg-primary/5 border border-primary/20 text-center">
-                <div className="text-xs font-medium text-muted-foreground mb-1">Training days</div>
+            <div className="grid grid-cols-2 gap-3.5">
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
+                <div className="text-xs font-medium text-muted-foreground mb-1.5">Training days</div>
                 <div className="text-xl font-semibold stat-number text-primary">
                   {formatCalories(avgTrainingCal)}
                 </div>
-                <div className="text-xs text-muted-foreground">kcal avg</div>
+                <div className="text-xs text-muted-foreground mt-0.5">kcal avg</div>
               </div>
-              <div className="p-3 rounded-xl bg-muted text-center">
-                <div className="text-xs font-medium text-muted-foreground mb-1">Rest days</div>
+              <div className="p-4 rounded-xl bg-muted text-center">
+                <div className="text-xs font-medium text-muted-foreground mb-1.5">Rest days</div>
                 <div className="text-xl font-semibold stat-number text-foreground">
                   {formatCalories(avgRestCal)}
                 </div>
-                <div className="text-xs text-muted-foreground">kcal avg</div>
+                <div className="text-xs text-muted-foreground mt-0.5">kcal avg</div>
               </div>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function InsightsPage() {
               <Award className="w-4 h-4 text-primary" />
               <h3 className="text-sm font-semibold text-foreground">Most logged meals</h3>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {frequentMeals.map((meal, i) => (
                 <div key={meal.id} className="flex items-center gap-3">
                   <span className="w-5 text-xs font-semibold text-muted-foreground text-right shrink-0">

@@ -23,17 +23,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (isFirstMount.current) {
       isFirstMount.current = false
       // Initial apply — inline script already handled this, just confirm
-      root.classList.remove('dark', 'pink')
+      root.classList.remove('dark', 'pink', 'maria')
       if (theme === 'dark') root.classList.add('dark')
       else if (theme === 'pink') root.classList.add('pink')
+      else if (theme === 'maria') root.classList.add('maria')
       return
     }
 
     // Subsequent theme changes — enable transitions briefly
     root.setAttribute('data-theme-transition', '')
-    root.classList.remove('dark', 'pink')
+    root.classList.remove('dark', 'pink', 'maria')
     if (theme === 'dark') root.classList.add('dark')
     else if (theme === 'pink') root.classList.add('pink')
+    else if (theme === 'maria') root.classList.add('maria')
 
     const t = setTimeout(() => root.removeAttribute('data-theme-transition'), 350)
     return () => clearTimeout(t)

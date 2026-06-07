@@ -75,12 +75,12 @@ export default function TodayPage() {
   )
 
   return (
-    <div className="px-4 lg:px-8 py-6 max-w-4xl mx-auto">
+    <div className="px-4 lg:px-8 py-7 max-w-4xl mx-auto">
       {/* Greeting */}
       <motion.div
         initial="hidden"
         animate="show"
-        className="mb-7"
+        className="mb-8"
       >
         <motion.div custom={0} variants={FADE_UP}>
           <p className="text-sm font-medium text-muted-foreground">
@@ -95,7 +95,7 @@ export default function TodayPage() {
       <motion.div
         initial="hidden"
         animate="show"
-        className="space-y-4"
+        className="space-y-5"
       >
         {/* Top row: Calories + Workout side by side on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -247,7 +247,7 @@ export default function TodayPage() {
 
         {/* Stats strip */}
         <motion.div custom={3} variants={FADE_UP}>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-3.5">
             <StatCard
               label="Calorie adherence"
               value={`${adherence}%`}
@@ -291,12 +291,12 @@ export default function TodayPage() {
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </Button>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2.5">
                 {frequentMeals.map((meal) => (
                   <button
                     key={meal.id}
                     onClick={() => router.push('/diet/log')}
-                    className="flex flex-col gap-0.5 p-3 rounded-xl border border-border bg-muted/30 hover:border-primary/30 hover:bg-primary/5 transition-all text-left"
+                    className="flex flex-col gap-1 p-3.5 rounded-xl border border-border bg-muted/30 hover:border-primary/30 hover:bg-primary/5 transition-all text-left"
                   >
                     <div className="text-xs font-semibold text-foreground leading-snug line-clamp-2">
                       {meal.name}

@@ -24,7 +24,7 @@ export function SectionTabs({ tabs, className }: SectionTabsProps) {
   return (
     <div
       className={cn(
-        'flex items-center gap-1 p-1 bg-muted rounded-xl w-fit',
+        'flex items-center gap-1 p-1.5 bg-muted rounded-xl w-fit overflow-x-auto scrollbar-hide max-w-full',
         className
       )}
     >
@@ -33,7 +33,7 @@ export function SectionTabs({ tabs, className }: SectionTabsProps) {
           key={href}
           href={href}
           className={cn(
-            'px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-150',
+            'px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 whitespace-nowrap',
             isActive(href)
               ? 'bg-card text-foreground shadow-sm'
               : 'text-muted-foreground hover:text-foreground'

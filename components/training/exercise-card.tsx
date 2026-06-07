@@ -117,9 +117,9 @@ export function ExerciseCard({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            <div className="px-4 pb-4 space-y-2">
+            <div className="px-4 pb-4 space-y-1.5">
               {/* Column headers */}
-              <div className="flex items-center gap-2 px-1 mb-1">
+              <div className="flex items-center gap-2 px-1 mb-2">
                 <div className="w-8 text-[10px] font-medium text-muted-foreground uppercase">
                   Set
                 </div>
@@ -129,7 +129,7 @@ export function ExerciseCard({
                 <div className="flex-1 text-[10px] font-medium text-muted-foreground uppercase">
                   Reps
                 </div>
-                <div className="w-7 text-[10px] font-medium text-muted-foreground uppercase text-center">
+                <div className="w-8 text-[10px] font-medium text-muted-foreground uppercase text-center">
                   ✓
                 </div>
               </div>

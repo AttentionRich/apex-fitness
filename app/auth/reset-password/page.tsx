@@ -11,9 +11,9 @@ export default function ResetPasswordPage() {
   const [state, formAction, isPending] = useActionState<AuthActionResult | null, FormData>(resetPasswordAction, null)
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-1.5">
+    <div className="w-full max-w-sm px-1">
+      <div className="mb-9">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
           Set new password
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -21,8 +21,8 @@ export default function ResetPasswordPage() {
         </p>
       </div>
 
-      <form action={formAction} className="space-y-4">
-        <div className="space-y-1.5">
+      <form action={formAction} className="space-y-5">
+        <div className="space-y-2">
           <Label htmlFor="password">New password</Label>
           <Input
             id="password"
@@ -35,7 +35,7 @@ export default function ResetPasswordPage() {
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="confirmPassword">Confirm new password</Label>
           <Input
             id="confirmPassword"

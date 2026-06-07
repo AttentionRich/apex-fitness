@@ -37,7 +37,7 @@ export default function RootLayout({
         {/* Apply stored theme before first paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('apex-theme-store')||'{}');var t=s.state&&s.state.theme;if(t==='dark')document.documentElement.classList.add('dark');else if(t==='pink')document.documentElement.classList.add('pink');}catch(e){}})();`,
+            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('apex-theme-store')||'{}');var t=(s.state&&s.state.theme)||'dark';if(t==='dark')document.documentElement.classList.add('dark');else if(t==='pink')document.documentElement.classList.add('pink');else if(t==='maria')document.documentElement.classList.add('maria');}catch(e){document.documentElement.classList.add('dark');}})();`,
           }}
         />
       </head>

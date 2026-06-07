@@ -102,7 +102,7 @@ export default function ExercisesPage() {
       <SectionTabs tabs={TRAINING_TABS} className="mb-5" />
 
       {/* Search + filter */}
-      <div className="flex gap-2 mb-5">
+      <div className="flex gap-2.5 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
@@ -152,7 +152,7 @@ export default function ExercisesPage() {
                 </div>
                 <div className="card-premium divide-y divide-border/50 overflow-hidden">
                   {exercises.map((ex) => (
-                    <div key={ex.id} className="flex items-center gap-3 px-4 py-3">
+                    <div key={ex.id} className="flex items-center gap-3 px-4 py-3.5">
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium text-foreground">
                           {ex.name}
@@ -184,8 +184,8 @@ export default function ExercisesPage() {
 
       {/* Add exercise sheet */}
       <Sheet open={showAdd} onOpenChange={setShowAdd}>
-        <SheetContent side="bottom" className="rounded-t-2xl">
-          <SheetHeader>
+        <SheetContent side="bottom" className="rounded-t-2xl px-5 pb-6">
+          <SheetHeader className="px-0">
             <SheetTitle>Add custom exercise</SheetTitle>
           </SheetHeader>
           <div className="py-4 space-y-4">

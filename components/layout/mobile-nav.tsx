@@ -28,7 +28,7 @@ export function MobileNav() {
   }
 
   return (
-    <nav className="lg:hidden fixed bottom-0 inset-x-0 z-50 flex items-center justify-around bg-card border-t border-border px-2 pb-safe">
+    <nav className="lg:hidden fixed bottom-0 inset-x-0 z-50 flex items-center justify-around bg-card border-t border-border px-1 pb-safe">
       {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
         const active = isActive(href)
         return (
@@ -36,7 +36,7 @@ export function MobileNav() {
             key={href}
             href={href}
             className={cn(
-              'flex flex-col items-center gap-1 py-3 px-3 min-w-0 flex-1 rounded-xl transition-colors',
+              'flex flex-col items-center gap-1 py-3.5 px-2 min-w-0 flex-1 rounded-xl transition-colors',
               active ? 'text-primary' : 'text-muted-foreground'
             )}
           >

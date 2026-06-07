@@ -25,8 +25,8 @@ function SignInForm() {
 
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-1.5">
+      <div className="mb-9">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
           Sign in
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -34,10 +34,10 @@ function SignInForm() {
         </p>
       </div>
 
-      <form action={formAction} className="space-y-4">
+      <form action={formAction} className="space-y-5">
         {next && <input type="hidden" name="next" value={next} />}
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
@@ -50,7 +50,7 @@ function SignInForm() {
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <Label htmlFor="password">Password</Label>
             <Link
@@ -112,7 +112,7 @@ function SignInForm() {
 
 export default function SignInPage() {
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-sm px-1">
       <Suspense>
         <SignInForm />
       </Suspense>

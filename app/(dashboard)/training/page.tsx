@@ -72,8 +72,8 @@ export default function TrainingPage() {
       <SectionTabs tabs={TRAINING_TABS} className="mb-6" />
 
       {/* Week grid */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between mb-4">
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between mb-5">
           <h2 className="text-sm font-semibold text-foreground">
             Week of {format(new Date(), "'week of' MMM d")}
           </h2>
@@ -93,7 +93,7 @@ export default function TrainingPage() {
             return (
               <div
                 key={dayIndex}
-                className="flex items-center gap-4 px-4 py-3 rounded-xl border border-border/50"
+                className="flex items-center gap-4 px-4 py-3.5 rounded-xl border border-border/50"
               >
                 <div className="w-10 text-center">
                   <div

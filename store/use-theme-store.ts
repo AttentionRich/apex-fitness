@@ -3,7 +3,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type Theme = 'light' | 'dark' | 'pink'
+export type Theme = 'light' | 'dark' | 'pink' | 'maria'
 
 type ThemeStore = {
   theme: Theme
@@ -13,7 +13,7 @@ type ThemeStore = {
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set) => ({
-      theme: 'light',
+      theme: 'dark',
       setTheme: (theme) => set({ theme }),
     }),
     { name: 'apex-theme-store' }

@@ -33,7 +33,7 @@ export function DashboardShell({
     <div className="flex h-full min-h-screen">
       <Sidebar user={user} />
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <div className="flex-1 overflow-y-auto pb-20 lg:pb-0">
+        <div className="flex-1 overflow-y-auto pb-24 lg:pb-0">
           {children}
         </div>
       </main>
