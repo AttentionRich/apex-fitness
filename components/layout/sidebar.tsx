@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { signOutAction } from '@/app/auth/actions'
+import { ThemeSwitcherCompact } from '@/components/layout/theme-switcher'
 
 type SidebarUser = {
   id: string
@@ -120,6 +121,8 @@ export function Sidebar({ user }: { user: SidebarUser }) {
             {label}
           </Link>
         ))}
+
+        <ThemeSwitcherCompact />
 
         {/* User account menu */}
         {user && (

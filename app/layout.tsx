@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { ThemeProvider } from '@/components/layout/theme-provider'
 import './globals.css'
 
 const inter = Inter({
@@ -32,10 +33,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} h-full`} suppressHydrationWarning>
+      <head>
+        {/* Apply stored theme before first paint to prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('apex-theme-store')||'{}');var t=s.state&&s.state.theme;if(t==='dark')document.documentElement.classList.add('dark');else if(t==='pink')document.documentElement.classList.add('pink');}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="h-full antialiased">
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

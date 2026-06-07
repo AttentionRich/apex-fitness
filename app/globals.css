@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant pink (&:is(.pink *));
 
 @theme inline {
   --color-background: var(--background);
@@ -159,6 +160,57 @@
   --sidebar-ring: oklch(0.597 0.245 262.881);
 }
 
+/* Pink feminine wellness theme */
+.pink {
+  --background: oklch(0.993 0.004 350);
+  --foreground: oklch(0.18 0.010 340);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.010 340);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.010 340);
+
+  /* Confident rose — 4.6:1 contrast on white */
+  --primary: oklch(0.60 0.22 350);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.968 0.012 350);
+  --secondary-foreground: oklch(0.40 0.07 345);
+
+  --muted: oklch(0.968 0.008 350);
+  --muted-foreground: oklch(0.51 0.05 345);
+
+  --accent: oklch(0.968 0.012 350);
+  --accent-foreground: oklch(0.40 0.07 345);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --success: oklch(0.596 0.17 145);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.714 0.16 60);
+  --warning-foreground: oklch(0.2 0.01 60);
+
+  --border: oklch(0.935 0.016 350);
+  --input: oklch(0.935 0.016 350);
+  --ring: oklch(0.60 0.22 350);
+
+  /* Rose-toned chart palette */
+  --chart-1: oklch(0.60 0.22 350);
+  --chart-2: oklch(0.69 0.18 20);
+  --chart-3: oklch(0.69 0.15 325);
+  --chart-4: oklch(0.79 0.10 0);
+  --chart-5: oklch(0.58 0.20 10);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.18 0.010 340);
+  --sidebar-primary: oklch(0.60 0.22 350);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.968 0.012 350);
+  --sidebar-accent-foreground: oklch(0.40 0.07 345);
+  --sidebar-border: oklch(0.935 0.016 350);
+  --sidebar-ring: oklch(0.60 0.22 350);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -199,4 +251,18 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Smooth theme transition — applied briefly via data attribute during theme switch */
+[data-theme-transition],
+[data-theme-transition] *,
+[data-theme-transition] *::before,
+[data-theme-transition] *::after {
+  transition:
+    background-color 0.25s ease,
+    color 0.20s ease,
+    border-color 0.25s ease,
+    fill 0.25s ease,
+    stroke 0.25s ease !important;
+  transition-delay: 0s !important;
 }

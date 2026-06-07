@@ -18,10 +18,12 @@ import {
   LogOut,
   Cloud,
   RefreshCw,
+  Palette,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { signOutAction } from '@/app/auth/actions'
 import { migrateLocalDataToSupabase } from '@/lib/sync/migrate-local-to-supabase'
+import { ThemeSwitcherFull } from '@/components/layout/theme-switcher'
 
 type SettingsUser = {
   id: string
@@ -89,6 +91,18 @@ export function SettingsClient({ user }: { user: SettingsUser }) {
       <PageHeader title="Settings" subtitle="Manage your account and data." />
 
       <div className="space-y-6">
+        {/* Theme */}
+        <div className="card-premium p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <Palette className="w-4 h-4 text-muted-foreground" />
+            <h2 className="text-sm font-semibold text-foreground">Theme</h2>
+          </div>
+          <p className="text-xs text-muted-foreground mb-4">
+            Choose your preferred visual style. Your selection is saved and applied instantly.
+          </p>
+          <ThemeSwitcherFull />
+        </div>
+
         {/* Account */}
         {user && (
           <div className="card-premium p-5">
