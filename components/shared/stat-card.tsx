@@ -49,11 +49,11 @@ export function StatCard({
         {Icon && (
           <div
             className={cn(
-              'w-7 h-7 rounded-lg flex items-center justify-center',
+              'w-10 h-10 rounded-xl flex items-center justify-center',
               iconColor ?? 'bg-muted text-muted-foreground'
             )}
           >
-            <Icon className="w-3.5 h-3.5" strokeWidth={2} />
+            <Icon className="w-4 h-4" strokeWidth={1.75} />
           </div>
         )}
       </div>

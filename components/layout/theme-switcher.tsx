@@ -41,8 +41,8 @@ const THEMES: ThemeOption[] = [
     id: 'maria',
     label: 'Maria 🌻',
     description: 'Sunflower warmth',
-    swatch: '#c8881a',
-    preview: 'linear-gradient(135deg, #fffcf0 0%, #fff8d4 50%, #fef0a0 100%)',
+    swatch: '#F5C842',
+    preview: 'linear-gradient(135deg, #ffffff 0%, #fffbe8 50%, #fff3b0 100%)',
   },
 ]
 
