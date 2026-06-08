@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { SavedMeal, MealType, MealTag } from '@/types/diet'
 import { generateId, formatCalories } from '@/lib/utils/format'
-import { getTodayString } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { cn } from '@/lib/utils'
 import {
   Plus, Search, Salad, Trash2, Flame, Star,
@@ -45,7 +45,7 @@ const TAG_COLORS: Record<string, string> = {
 }
 
 export default function MealsLibraryPage() {
-  const today = getTodayString()
+  const today = useCurrentDate()
   const { savedMeals, addSavedMeal, deleteSavedMeal, addMealEntry, incrementMealUseCount } = useDietStore()
   const { profile } = useProfileStore()
 

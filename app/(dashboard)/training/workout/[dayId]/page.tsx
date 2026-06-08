@@ -3,7 +3,7 @@
 import { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTrainingStore } from '@/store/use-training-store'
-import { getTodayString } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { generateId } from '@/lib/utils/format'
 import { getSuggestedNextWeight } from '@/lib/calculations/progression'
 import { WorkoutLog, ExerciseLog, LoggedSet, ProgressionSuggestion } from '@/types/training'
@@ -34,7 +34,7 @@ export default function WorkoutPage({ params }: Props) {
   } = useTrainingStore()
 
   const program = getActiveProgram()
-  const today = getTodayString()
+  const today = useCurrentDate()
   const [startTime] = useState(Date.now())
   const [showSummary, setShowSummary] = useState(false)
   const [suggestions, setSuggestions] = useState<ProgressionSuggestion[]>([])
@@ -83,7 +83,7 @@ export default function WorkoutPage({ params }: Props) {
       updatedAt: new Date().toISOString(),
     }
     addWorkoutLog(log)
-  }, [workoutDay?.id]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [workoutDay?.id, today]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const log = workoutLogs.find((l) => l.workoutDayId === dayId && l.date === today)
 

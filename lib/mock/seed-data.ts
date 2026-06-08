@@ -329,11 +329,6 @@ function makeMealEntries(): MealEntry[] {
       { mealType: 'snack', mealId: 'meal-protein-shake', calVariance: 0 },
       { mealType: 'dinner', mealId: 'meal-salmon-veg', calVariance: 0 },
     ],
-    // Today - partial
-    [
-      { mealType: 'breakfast', mealId: 'meal-oatmeal', calVariance: 0 },
-      { mealType: 'snack', mealId: 'meal-protein-shake', calVariance: 0 },
-    ],
   ]
 
   const mealMap = Object.fromEntries(SEED_SAVED_MEALS.map((m) => [m.id, m]))

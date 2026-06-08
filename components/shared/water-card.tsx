@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useWaterStore } from '@/store/use-water-store'
 import { useProfileStore } from '@/store/use-profile-store'
-import { getTodayString } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { formatWater } from '@/lib/utils/format'
 import { cn } from '@/lib/utils'
 import { Droplets, Pencil, Check, Trash2, Plus } from 'lucide-react'
@@ -15,7 +15,7 @@ const DEFAULT_WATER_TARGET = 2500
 const QUICK_AMOUNTS = [250, 500, 750]
 
 export function WaterCard() {
-  const today = getTodayString()
+  const today = useCurrentDate()
   const { profile, setWaterTarget } = useProfileStore()
   const { getDayIntake, getDayEntries, addWaterEntry, deleteWaterEntry } = useWaterStore()
 

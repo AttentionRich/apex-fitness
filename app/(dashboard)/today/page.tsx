@@ -6,7 +6,8 @@ import { useProfileStore } from '@/store/use-profile-store'
 import { CalorieRing } from '@/components/shared/calorie-ring'
 import { StatCard } from '@/components/shared/stat-card'
 import { Button } from '@/components/ui/button'
-import { getTodayString, getDayIndex, DAY_FULL_NAMES } from '@/lib/utils/date'
+import { getDayIndex, DAY_FULL_NAMES } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { formatCalories, formatDuration } from '@/lib/utils/format'
 import { cn } from '@/lib/utils'
 import {
@@ -30,7 +31,7 @@ const FADE_UP = {
 
 export default function TodayPage() {
   const router = useRouter()
-  const today = getTodayString()
+  const today = useCurrentDate()
   const todayDayIndex = getDayIndex()
   const dayName = DAY_FULL_NAMES[todayDayIndex]
 

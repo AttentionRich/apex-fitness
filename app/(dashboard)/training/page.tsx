@@ -6,7 +6,7 @@ import { SectionTabs } from '@/components/shared/section-tabs'
 import { EmptyState } from '@/components/shared/empty-state'
 import { WorkoutDayCard } from '@/components/training/workout-day-card'
 import { getDayIndex, getDayName } from '@/lib/utils/date'
-import { getTodayString } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { Dumbbell, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
@@ -23,7 +23,7 @@ export default function TrainingPage() {
   const router = useRouter()
   const { getActiveProgram, workoutLogs } = useTrainingStore()
   const program = getActiveProgram()
-  const today = getTodayString()
+  const today = useCurrentDate()
   const todayDayIndex = getDayIndex()
 
   if (!program) {

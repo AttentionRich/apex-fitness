@@ -14,7 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { MealEntry, MealType, SavedMeal } from '@/types/diet'
 import { generateId, formatCalories } from '@/lib/utils/format'
-import { getTodayString, formatDisplayDate } from '@/lib/utils/date'
+import { formatDisplayDate } from '@/lib/utils/date'
+import { useCurrentDate } from '@/hooks/use-current-date'
 import { cn } from '@/lib/utils'
 import {
   Plus, Salad, Trash2, Coffee, Sun, Moon, Apple, ChevronRight,
@@ -39,7 +40,7 @@ const MEAL_TYPES: { type: MealType; label: string; icon: React.ComponentType<{ c
 const DEFAULT_TARGET = 2200
 
 export default function DietLogPage() {
-  const today = getTodayString()
+  const today = useCurrentDate()
   const { profile } = useProfileStore()
   const {
     getDayEntries,
