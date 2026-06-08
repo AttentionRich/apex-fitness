@@ -2,14 +2,15 @@
 
 import { useDietStore } from '@/store/use-diet-store'
 import { useProfileStore } from '@/store/use-profile-store'
+import { useWaterStore } from '@/store/use-water-store'
 import { PageHeader } from '@/components/layout/page-header'
 import { SectionTabs } from '@/components/shared/section-tabs'
 import { StatCard } from '@/components/shared/stat-card'
 import { ChartCard } from '@/components/shared/chart-card'
 import { EmptyState } from '@/components/shared/empty-state'
-import { formatCalories } from '@/lib/utils/format'
+import { formatCalories, formatWater } from '@/lib/utils/format'
 import { formatShortDate } from '@/lib/utils/date'
-import { BarChart3, Flame, Target, TrendingDown } from 'lucide-react'
+import { BarChart3, Flame, Target, TrendingDown, Droplets } from 'lucide-react'
 import {
   AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, CartesianGrid, ReferenceLine,
@@ -24,6 +25,7 @@ const DIET_TABS = [
 ]
 
 const DEFAULT_TARGET = 2200
+const DEFAULT_WATER_TARGET = 2500
 
 const CHART_STYLE = {
   tick: { fill: 'var(--color-muted-foreground)', fontSize: 11 },
@@ -33,6 +35,7 @@ const CHART_STYLE = {
 export default function DietProgressPage() {
   const { profile } = useProfileStore()
   const { getCalorieTrend, getDayEntries, getWeeklyAdherence } = useDietStore()
+  const { getWaterTrend } = useWaterStore()
 
   const target = profile?.customCalorieTarget ?? profile?.calorieTarget ?? DEFAULT_TARGET
   const trend = getCalorieTrend(target, 14)
@@ -51,6 +54,17 @@ export default function DietProgressPage() {
   const adherentDays = trend.filter((d) => d.adherent).length
   const avgVsTarget = avgCalories - target
   const isUnder = avgVsTarget <= 0
+
+  // Water trend
+  const waterTarget = profile?.waterTarget ?? DEFAULT_WATER_TARGET
+  const waterTrend = getWaterTrend(waterTarget, 14)
+  const hasWaterData = waterTrend.some((d) => d.consumed > 0)
+  const waterDaysWithData = waterTrend.filter((d) => d.consumed > 0)
+  const avgWater =
+    waterDaysWithData.length > 0
+      ? Math.round(waterDaysWithData.reduce((sum, d) => sum + d.consumed, 0) / waterDaysWithData.length)
+      : 0
+  const waterDaysOnTarget = waterTrend.filter((d) => d.consumed >= waterTarget).length
 
   // Meal type breakdown (last 7 days)
   const mealTypeBreakdown = ['breakfast', 'lunch', 'dinner', 'snack'].map((type) => {
@@ -214,6 +228,101 @@ export default function DietProgressPage() {
                   : `Your average intake is ${formatCalories(Math.abs(avgVsTarget))} kcal above target over the last ${daysWithData.length} days. Small consistent adjustments are more effective than large cuts.`}
               </p>
             </div>
+          )}
+
+          {/* Water trend */}
+          {hasWaterData && (
+            <>
+              <div className="flex items-center gap-2.5 mt-2">
+                <div className="w-7 h-7 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                  <Droplets className="w-3.5 h-3.5 text-cyan-500" />
+                </div>
+                <h2 className="text-base font-semibold text-foreground">Hydration</h2>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3.5">
+                <StatCard
+                  label="Avg daily intake"
+                  value={formatWater(avgWater)}
+                  sublabel={`target: ${formatWater(waterTarget)}`}
+                  icon={Droplets}
+                  iconColor="bg-cyan-500/10 text-cyan-500"
+                />
+                <StatCard
+                  label="Days on target"
+                  value={waterDaysOnTarget}
+                  unit={`/ ${waterDaysWithData.length}`}
+                  sublabel="last 14 days"
+                  icon={Target}
+                  iconColor={
+                    waterDaysOnTarget / Math.max(waterDaysWithData.length, 1) >= 0.7
+                      ? 'bg-cyan-500/10 text-cyan-500'
+                      : 'bg-muted text-muted-foreground'
+                  }
+                />
+              </div>
+
+              <ChartCard
+                title="Daily water intake — last 14 days"
+                subtitle={`Avg: ${formatWater(avgWater)} · Target: ${formatWater(waterTarget)}`}
+                height={200}
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={waterTrend}>
+                    <defs>
+                      <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.15} />
+                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke={CHART_STYLE.grid} vertical={false} />
+                    <XAxis
+                      dataKey="date"
+                      tick={CHART_STYLE.tick}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(d) => formatShortDate(d)}
+                      interval={2}
+                    />
+                    <YAxis
+                      tick={CHART_STYLE.tick}
+                      axisLine={false}
+                      tickLine={false}
+                      width={40}
+                      tickFormatter={(v) => formatWater(v)}
+                    />
+                    <ReferenceLine
+                      y={waterTarget}
+                      stroke="#06b6d4"
+                      strokeDasharray="4 4"
+                      strokeOpacity={0.5}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        background: 'var(--color-card)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: 10,
+                        fontSize: 12,
+                      }}
+                      formatter={(val, name) => [
+                        formatWater(Number(val)),
+                        name === 'consumed' ? 'Consumed' : 'Target',
+                      ]}
+                      labelFormatter={(label) => formatShortDate(label)}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="consumed"
+                      stroke="#06b6d4"
+                      strokeWidth={2}
+                      fill="url(#waterGrad)"
+                      dot={false}
+                      activeDot={{ r: 4, fill: '#06b6d4' }}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </ChartCard>
+            </>
           )}
         </div>
       )}

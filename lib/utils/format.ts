@@ -25,3 +25,8 @@ export function formatDuration(minutes: number): string {
 export function generateId(): string {
   return Math.random().toString(36).slice(2, 11) + Date.now().toString(36)
 }
+
+export function formatWater(ml: number): string {
+  if (ml >= 1000) return `${(ml / 1000).toFixed(1)}L`
+  return `${ml}ml`
+}

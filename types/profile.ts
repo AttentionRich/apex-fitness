@@ -21,6 +21,7 @@ export type UserProfile = {
   calorieTarget?: number
   customCalorieTarget?: number
   maintenanceCalories?: number
+  waterTarget?: number
   createdAt: string
   updatedAt: string
 }

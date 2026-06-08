@@ -20,6 +20,7 @@ import {
   Plus, Salad, Trash2, Coffee, Sun, Moon, Apple, ChevronRight,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { WaterCard } from '@/components/shared/water-card'
 
 const DIET_TABS = [
   { href: '/diet/log', label: 'Daily Log' },
@@ -210,6 +211,8 @@ export default function DietLogPage() {
           </p>
         )}
       </div>
+
+      <WaterCard />
 
       {/* Suggestions row */}
       {suggestions.length > 0 && (

@@ -10,6 +10,7 @@ type ProfileStore = {
   updateProfile: (updates: Partial<UserProfile>) => void
   setCalorieTarget: (goalType: GoalType, calories: number, maintenance: number) => void
   setCustomCalorieTarget: (calories: number | null) => void
+  setWaterTarget: (ml: number) => void
   clearProfile: () => void
   completeOnboarding: () => void
 }
@@ -55,6 +56,13 @@ export const useProfileStore = create<ProfileStore>()(
                 customCalorieTarget: calories ?? undefined,
                 updatedAt: new Date().toISOString(),
               }
+            : DEFAULT_PROFILE,
+        })),
+
+      setWaterTarget: (ml) =>
+        set((state) => ({
+          profile: state.profile
+            ? { ...state.profile, waterTarget: ml, updatedAt: new Date().toISOString() }
             : DEFAULT_PROFILE,
         })),
 
