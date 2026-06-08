@@ -9,6 +9,7 @@ type ProfileStore = {
   isOnboarded: boolean
   updateProfile: (updates: Partial<UserProfile>) => void
   setCalorieTarget: (goalType: GoalType, calories: number, maintenance: number) => void
+  setCustomCalorieTarget: (calories: number | null) => void
   clearProfile: () => void
   completeOnboarding: () => void
 }
@@ -41,6 +42,17 @@ export const useProfileStore = create<ProfileStore>()(
                 goalType,
                 calorieTarget: calories,
                 maintenanceCalories: maintenance,
+                updatedAt: new Date().toISOString(),
+              }
+            : DEFAULT_PROFILE,
+        })),
+
+      setCustomCalorieTarget: (calories) =>
+        set((state) => ({
+          profile: state.profile
+            ? {
+                ...state.profile,
+                customCalorieTarget: calories ?? undefined,
                 updatedAt: new Date().toISOString(),
               }
             : DEFAULT_PROFILE,

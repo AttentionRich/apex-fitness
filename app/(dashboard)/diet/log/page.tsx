@@ -48,7 +48,7 @@ export default function DietLogPage() {
     getSuggestedMeals,
   } = useDietStore()
 
-  const target = profile?.calorieTarget ?? DEFAULT_TARGET
+  const target = profile?.customCalorieTarget ?? profile?.calorieTarget ?? DEFAULT_TARGET
   const entries = getDayEntries(today)
   const totalConsumed = entries.reduce((sum, e) => sum + e.calories, 0)
   const remaining = Math.max(target - totalConsumed, 0)
@@ -200,7 +200,7 @@ export default function DietLogPage() {
           </div>
         </div>
 
-        {profile?.calorieTarget == null && (
+        {profile?.customCalorieTarget == null && profile?.calorieTarget == null && (
           <p className="text-xs text-muted-foreground mt-3 text-center">
             Set a calorie target in the{' '}
             <a href="/diet/targets" className="text-primary underline-offset-2 hover:underline">

@@ -27,7 +27,7 @@ export default function InsightsPage() {
   const { getCalorieTrend, getDayEntries, getFrequentMeals } = useDietStore()
   const { profile } = useProfileStore()
 
-  const target = profile?.calorieTarget ?? DEFAULT_TARGET
+  const target = profile?.customCalorieTarget ?? profile?.calorieTarget ?? DEFAULT_TARGET
   const program = getActiveProgram()
   const trend = getCalorieTrend(target, 14)
   const frequentMeals = getFrequentMeals(5)

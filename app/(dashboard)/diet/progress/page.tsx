@@ -34,7 +34,7 @@ export default function DietProgressPage() {
   const { profile } = useProfileStore()
   const { getCalorieTrend, getDayEntries, getWeeklyAdherence } = useDietStore()
 
-  const target = profile?.calorieTarget ?? DEFAULT_TARGET
+  const target = profile?.customCalorieTarget ?? profile?.calorieTarget ?? DEFAULT_TARGET
   const trend = getCalorieTrend(target, 14)
   const adherence = getWeeklyAdherence(target)
 

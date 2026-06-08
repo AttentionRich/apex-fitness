@@ -29,7 +29,7 @@ const DIET_TABS = [
 ]
 
 export default function TargetsPage() {
-  const { profile, updateProfile, setCalorieTarget } = useProfileStore()
+  const { profile, updateProfile, setCalorieTarget, setCustomCalorieTarget } = useProfileStore()
 
   const [age, setAge] = useState(String(profile?.age ?? ''))
   const [sex, setSex] = useState<Sex>(profile?.sex ?? 'male')
@@ -46,6 +46,9 @@ export default function TargetsPage() {
     profile?.goalType ?? null
   )
   const [saved, setSaved] = useState(false)
+  const [customTargetInput, setCustomTargetInput] = useState(
+    profile?.customCalorieTarget ? String(profile.customCalorieTarget) : ''
+  )
 
   function handleCalculate() {
     const a = parseInt(age)
@@ -60,6 +63,19 @@ export default function TargetsPage() {
     setMaintenance(tdee)
     setTargets(calTargets)
     updateProfile({ age: a, sex, weightKg: w, heightCm: h, activityLevel: activity })
+  }
+
+  function handleSaveCustomTarget() {
+    const val = parseInt(customTargetInput)
+    if (!customTargetInput.trim() || isNaN(val) || val < 500) {
+      setCustomCalorieTarget(null)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+      return
+    }
+    setCustomCalorieTarget(val)
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
   }
 
   function handleSelectTarget(target: CalorieTarget) {
@@ -160,6 +176,57 @@ export default function TargetsPage() {
           <Flame className="w-4 h-4 mr-2" />
           Calculate maintenance calories
         </Button>
+      </div>
+
+      {/* Custom target override — always visible */}
+      <div className="card-premium p-5 mb-6">
+        <h2 className="text-sm font-semibold text-foreground mb-1">Custom target</h2>
+        <p className="text-xs text-muted-foreground mb-4">
+          Set your own daily calorie target. This overrides any recommended value everywhere in the app.
+          {profile?.calorieTarget && !profile?.customCalorieTarget && (
+            <span className="ml-1">
+              Current recommendation: <span className="font-medium text-foreground">{formatCalories(profile.calorieTarget)} kcal</span>
+            </span>
+          )}
+        </p>
+        <div className="flex gap-2 items-end">
+          <div className="space-y-1.5 flex-1">
+            <Label htmlFor="custom-target">Your target (kcal)</Label>
+            <Input
+              id="custom-target"
+              type="number"
+              placeholder={profile?.calorieTarget ? String(profile.calorieTarget) : '2200'}
+              value={customTargetInput}
+              onChange={(e) => setCustomTargetInput(e.target.value)}
+              min="500"
+              max="10000"
+              step="50"
+              onKeyDown={(e) => e.key === 'Enter' && handleSaveCustomTarget()}
+            />
+          </div>
+          <Button onClick={handleSaveCustomTarget}>Save</Button>
+        </div>
+        {profile?.customCalorieTarget ? (
+          <div className="mt-3 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Active: {formatCalories(profile.customCalorieTarget)} kcal/day
+            </div>
+            <button
+              onClick={() => {
+                setCustomCalorieTarget(null)
+                setCustomTargetInput('')
+              }}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Clear override
+            </button>
+          </div>
+        ) : (
+          <p className="mt-2 text-xs text-muted-foreground">
+            Leave empty to use the recommended value below.
+          </p>
+        )}
       </div>
 
       {/* Results */}

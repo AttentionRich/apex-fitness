@@ -20,14 +20,37 @@ export function DashboardShell({
   user: ShellUser
   children: React.ReactNode
 }) {
-  const { seedData: seedTraining, isSeeded: trainingSeeded } = useTrainingStore()
-  const { seedData: seedDiet, isSeeded: dietSeeded } = useDietStore()
-
-  // Seed demo data on first load only
+  // Seed demo data after store hydration is confirmed.
+  // Uses persist.hasHydrated() + onFinishHydration() to avoid the Zustand v5
+  // async-rehydration race where isSeeded is still false at first render.
   useEffect(() => {
-    if (!trainingSeeded) seedTraining()
-    if (!dietSeeded) seedDiet()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    function trySeedTraining() {
+      if (!useTrainingStore.getState().isSeeded) useTrainingStore.getState().seedData()
+    }
+    function trySeedDiet() {
+      if (!useDietStore.getState().isSeeded) useDietStore.getState().seedData()
+    }
+
+    let unsubTraining: (() => void) | undefined
+    let unsubDiet: (() => void) | undefined
+
+    if (useTrainingStore.persist.hasHydrated()) {
+      trySeedTraining()
+    } else {
+      unsubTraining = useTrainingStore.persist.onFinishHydration(trySeedTraining)
+    }
+
+    if (useDietStore.persist.hasHydrated()) {
+      trySeedDiet()
+    } else {
+      unsubDiet = useDietStore.persist.onFinishHydration(trySeedDiet)
+    }
+
+    return () => {
+      unsubTraining?.()
+      unsubDiet?.()
+    }
+  }, [])
 
   return (
     <div className="flex h-full min-h-screen">

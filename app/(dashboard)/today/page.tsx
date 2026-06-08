@@ -39,7 +39,7 @@ export default function TodayPage() {
   const { profile } = useProfileStore()
 
   const program = getActiveProgram()
-  const target = profile?.calorieTarget ?? DEFAULT_TARGET
+  const target = profile?.customCalorieTarget ?? profile?.calorieTarget ?? DEFAULT_TARGET
   const summary = getDailySummary(today, target)
   const adherence = getWeeklyAdherence(target)
   const frequentMeals = getFrequentMeals(3)

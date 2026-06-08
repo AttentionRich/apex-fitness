@@ -19,6 +19,7 @@ export type UserProfile = {
   activityLevel?: ActivityLevel
   goalType?: GoalType
   calorieTarget?: number
+  customCalorieTarget?: number
   maintenanceCalories?: number
   createdAt: string
   updatedAt: string
